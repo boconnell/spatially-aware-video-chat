@@ -36,6 +36,7 @@ export default function ParticipantStrip() {
           participant={localParticipant}
           isSelected={selectedParticipant === localParticipant}
           onClick={() => setSelectedParticipant(localParticipant)}
+          volume={0}
         />
         {participants.map(participant => (
           <Participant
@@ -43,6 +44,7 @@ export default function ParticipantStrip() {
             participant={participant}
             isSelected={selectedParticipant === participant}
             onClick={() => setSelectedParticipant(participant)}
+            volume={0.5}
           />
         ))}
       </ScrollContainer>

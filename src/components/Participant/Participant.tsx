@@ -9,6 +9,7 @@ interface ParticipantProps {
   enableScreenShare?: boolean;
   onClick: () => void;
   isSelected: boolean;
+  volume: number;
 }
 
 export default function Participant({
@@ -17,10 +18,16 @@ export default function Participant({
   enableScreenShare,
   onClick,
   isSelected,
+  volume,
 }: ParticipantProps) {
   return (
     <ParticipantInfo participant={participant} onClick={onClick} isSelected={isSelected}>
-      <ParticipantTracks participant={participant} disableAudio={disableAudio} enableScreenShare={enableScreenShare} />
+      <ParticipantTracks
+        participant={participant}
+        disableAudio={disableAudio}
+        enableScreenShare={enableScreenShare}
+        volume={volume}
+      />
     </ParticipantInfo>
   );
 }

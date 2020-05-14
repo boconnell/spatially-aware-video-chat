@@ -6,6 +6,7 @@ import {
   LocalVideoTrack,
   Room,
   TwilioError,
+  LocalDataTrack,
 } from 'twilio-video';
 import { Callback, ErrorCallback } from '../../types';
 import { SelectedParticipantProvider } from './useSelectedParticipant/useSelectedParticipant';
@@ -26,7 +27,7 @@ import useRoom from './useRoom/useRoom';
 
 export interface IVideoContext {
   room: Room;
-  localTracks: (LocalAudioTrack | LocalVideoTrack)[];
+  localTracks: (LocalAudioTrack | LocalVideoTrack | LocalDataTrack)[];
   isConnecting: boolean;
   connect: (token: string) => Promise<void>;
   onError: ErrorCallback;

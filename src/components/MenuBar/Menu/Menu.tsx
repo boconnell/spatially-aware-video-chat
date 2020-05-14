@@ -20,7 +20,7 @@ export default function Menu() {
 
   const handleSignOut = useCallback(() => {
     room.disconnect?.();
-    localTracks.forEach(track => track.stop());
+    localTracks.forEach(track => (track.kind == 'video' || track.kind == 'audio') && track.stop());
     signOut?.();
   }, [room.disconnect, localTracks, signOut]);
 

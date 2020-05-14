@@ -4,18 +4,20 @@ import { useAppState } from '../../state';
 
 interface AudioTrackProps {
   track: IAudioTrack;
+  volume: number;
 }
 
-export default function AudioTrack({ track }: AudioTrackProps) {
+export default function AudioTrack({ track, volume }: AudioTrackProps) {
   const { activeSinkId } = useAppState();
   const audioEl = useRef<HTMLAudioElement>();
 
   useEffect(() => {
     audioEl.current = track.attach();
     audioEl.current.setAttribute('data-cy-audio-track-name', track.name);
+    audioEl.current.volume = volume;
     document.body.appendChild(audioEl.current);
     return () => track.detach().forEach(el => el.remove());
-  }, [track]);
+  }, [track, volume]);
 
   useEffect(() => {
     audioEl.current?.setSinkId?.(activeSinkId);
