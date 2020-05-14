@@ -1,61 +1,39 @@
-# Twilio Video React App
-
-[![CircleCI](https://circleci.com/gh/twilio/twilio-video-app-react.svg?style=svg)](https://circleci.com/gh/twilio/twilio-video-app-react)
+# Spatially Aware Video Chat
 
 ## What is it
 
-This application demonstrates a multi-party video application built with [twilio-video.js](https://github.com/twilio/twilio-video.js) and [Create React App](https://github.com/facebook/create-react-app).
-
-* Deploy to [Twilio Serverless](https://www.twilio.com/docs/runtime/functions-assets-api) in just a few minutes
-* No other infrastructure is required
-* No code changes are required before your first deploy
-* There is no cost associated with deploying the app
-* When using the app, you will be charged [$0.01 / video participant minute](https://www.twilio.com/video/pricing).
-
-![App Preview](https://user-images.githubusercontent.com/12685223/76361972-c035b700-62e5-11ea-8f9d-0bb24bd73fd4.png)
+Create video chat rooms where users can position themselves within the room, and volume of other participants scales based on how far away they are from user. Use to simulate in-person gatherings where smaller sub conversations are happening within a larger room.
 
 ## Prerequisites
 
 You must have the following installed:
 
-* [Node.js v10+](https://nodejs.org/en/download/)
-* NPM v6+ (comes installed with newer Node versions)
+- [Node.js v10+](https://nodejs.org/en/download/)
+- NPM v6+ (comes installed with newer Node versions)
 
-## Install Dependencies
+## Set up
 
-Run `npm install` to install all dependencies from NPM.
-
-If you want to use `yarn` to install dependencies, first run the [yarn import](https://classic.yarnpkg.com/en/docs/cli/import/) command. This will ensure that yarn installs the package versions that are specified in `package-lock.json`.
-
-## Install Twilio CLI
-
-The app is deployed to Twilio using the Twilio CLI. Install twilio-cli with:
-
-    $ npm install -g twilio-cli
-
-Login to the Twilio CLI. You will be prompted for your Account SID and Auth Token, both of which you can find on the dashboard of your [Twilio console](https://twilio.com/console).
-
-    $ twilio login
-
-This app requires an additional plugin. Install the CLI plugin with:
-
-    $ twilio plugins:install @twilio-labs/plugin-rtc
+`npm install`
 
 ## Deploy the app to Twilio
 
-Before deploying the app, make sure you are using the correct account on the Twilio CLI (using the command `twilio profiles:list` to check). 
-The app is deployed to Twilio with a single command:
+\$ npm install -g twilio-cli
 
-    $ npm run deploy:twilio-cli
+Credentials from your [Twilio console](https://twilio.com/console):
+\$ twilio login
+
+\$ twilio plugins:install @twilio-labs/plugin-rtc
+
+\$ npm run deploy:twilio-cli
 
 This performs the following steps:
 
-* Builds the React app in the `src` directory
-* Generates a random code used to access the Video app
-* Deploys the React app and token server function as a Twilio Serverless service.
-* Prints the URL for the app and the passcode.
+- Builds the React app in the `src` directory
+- Generates a random code used to access the Video app
+- Deploys the React app and token server function as a Twilio Serverless service.
+- Prints the URL for the app and the passcode.
 
-**NOTE:** The Twilio Function that provides access tokens via a passcode should *NOT* be used in a production environment. This token server supports seamlessly getting started with the collaboration app, and while convenient, the passcode is not secure enough for production environments. You should use an authentication provider to securely provide access tokens to your client applications. You can find more information about Programmable Video access tokens [in this tutorial](https://www.twilio.com/docs/video/tutorials/user-identity-access-tokens). **As a precaution, the passcode will expire after one week**. To generate a new passcode, redeploy the app:
+**NOTE:** The Twilio Function that provides access tokens via a passcode should _NOT_ be used in a production environment. This token server supports seamlessly getting started with the collaboration app, and while convenient, the passcode is not secure enough for production environments. You should use an authentication provider to securely provide access tokens to your client applications. You can find more information about Programmable Video access tokens [in this tutorial](https://www.twilio.com/docs/video/tutorials/user-identity-access-tokens). **As a precaution, the passcode will expire after one week**. To generate a new passcode, redeploy the app:
 
     $ npm run deploy:twilio-cli -- --override
 
@@ -80,18 +58,6 @@ If any errors occur after running a [Twilio CLI RTC Plugin](https://github.com/t
 1. Run `twilio plugins:update` to update the rtc plugin to the latest version.
 1. Run `twilio rtc:apps:video:delete` to delete any existing video apps.
 1. Run `npm run deploy:twilio-cli` to deploy a new video app.
-
-## Features
-
-The Video app has the following features:
-
-- [x] Video conferencing with real-time video and audio
-- [x] Enable/disable camera
-- [x] Mute/unmute mic
-- [x] Screen sharing
-- [x] [Dominant speaker](https://www.twilio.com/docs/video/detecting-dominant-speaker) indicator
-- [x] [Network quality](https://www.twilio.com/docs/video/using-network-quality-api) indicator
-- [x] [Bandwidth Profile API](https://www.twilio.com/docs/video/tutorials/using-bandwidth-profile-api)
 
 ## Browser Support
 
@@ -219,7 +185,7 @@ This application dynamically changes the priority of remote video tracks to prov
 
 ### Google Authentication using Firebase (optional)
 
-This application can be configured to authenticate users before they use the app. Once users have signed into the app with their Google credentials, their Firebase ID Token will be included in the Authorization header of the HTTP request that is used to obtain an access token. The Firebase ID Token can then be [verified](https://firebase.google.com/docs/auth/admin/verify-id-tokens) by the server that dispenses access tokens for connecting to a room. 
+This application can be configured to authenticate users before they use the app. Once users have signed into the app with their Google credentials, their Firebase ID Token will be included in the Authorization header of the HTTP request that is used to obtain an access token. The Firebase ID Token can then be [verified](https://firebase.google.com/docs/auth/admin/verify-id-tokens) by the server that dispenses access tokens for connecting to a room.
 
 See [.env.example](.env.example) for an explanation of the environment variables that must be set to enable Google authentication.
 
