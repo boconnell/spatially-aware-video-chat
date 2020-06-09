@@ -2,7 +2,9 @@
 
 ## What is it
 
-Create video chat rooms where users can position themselves within the room, and volume of other participants scales based on how far away they are from user. Use to simulate in-person gatherings where smaller sub conversations are happening within a larger room.
+Create video chat rooms where users can position themselves within the room, and volume of other participants scales based on how far away they are from user. Use to simulate in-person gatherings where smaller sub conversations are happening within a larger room. It is currently intended to be a proof of concept and requires more work.
+
+The base is https://github.com/twilio/twilio-video-app-react. The interesting changes are in https://github.com/boconnell/spatially-aware-video-chat/blob/master/src/components/Room/Room.tsx and https://github.com/boconnell/spatially-aware-video-chat/blob/master/src/hooks/useParticipantPositions/useParticipantPositions.tsx
 
 ## Prerequisites
 
